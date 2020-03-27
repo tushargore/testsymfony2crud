@@ -1,0 +1,33 @@
+<h3>Employee Data</h3> 
+{% 
+for success_message in app.session.flashbag.get('Message') 
+%}
+<p>{{success_message}}</p>
+{% endfor %}
+<a href="{{ absolute_url(asset(''))}}users/create">Create New Record</a>
+<table width=50%>
+    <tr>
+        <td>ID</td>
+        <td>Name of Employee</td>
+        <td>Mobile</td>
+        <td>City</td>
+        <td>Salary</td>
+        <td>Action</td>
+        
+        </tr>
+{% for value in values %}
+              <tr>
+                <td>{{ value.id }}</td>
+                <td>{{ value.Name }}</td>
+                <td>{{ value.Mobile }}</td>
+                <td>{{ value.City }}</td>
+                <td>{{ value.Salary }}</td>
+                <td>
+                  <a class="hollow button" href="{{ absolute_url(asset(''))}}users/edit/{{value.id}}">EDIT</a>
+                  <a class="hollow button warning" href="{{ absolute_url(asset(''))}}users/delete/{{value.id}}">DELETE</a>
+                </td>
+              </tr>
+            {% endfor %}
+</table>
+<hr>
+<a href="{{absolute_url(asset(''))}}">Back To Home</a>
